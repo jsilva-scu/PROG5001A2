@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import javax.swing.JFrame;
 
 public class JMAS_SnakeGame extends JFrame {
 
@@ -13,7 +14,7 @@ public class JMAS_SnakeGame extends JFrame {
     public static void main(String[] args) {        
         EventQueue.invokeLater(() -> {
             //create the game with a game title as follow: The Snake Game (C) Your_Name
-            JFrame sgame = new JMAS_SnakeGame();
+            JFrame sgame = new JMAS_SnakeGame("The Snake Game (C) Jhonathan Silva");
             sgame.setVisible(true);
         });
     }
