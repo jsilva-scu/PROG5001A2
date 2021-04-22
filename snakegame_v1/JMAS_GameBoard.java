@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class JMAS_GameBoard extends JPanel {    
-    int xcells = 30    
-    int ycells = 30
-    int szcell = 10        
+    int xcells = 30; 
+    int ycells = 30;
+    int szcell = 10;
        
     public JMAS_GameBoard() {
         setPreferredSize(new Dimension(xcells * szcell, ycells * szcell));        
-        setBackground(color.black);
+        setBackground(Color.black);
         setFocusable(true);        
     }
 
