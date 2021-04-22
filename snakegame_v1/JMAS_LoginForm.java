@@ -25,7 +25,7 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
     private JTextField textUsername;
     private JPasswordField fieldPassword;
     private JButton buttonLogin;
-    private PlayerList playerList;
+    private JMAS_PlayerList playerList;
  
     public JMAS_LoginForm() {
         super("Login Form");
@@ -76,7 +76,7 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
         buttonLogin.addActionListener(this);
         
         //instantiate the playerList
-        playerList = new PlayerList();
+        playerList = new JMAS_PlayerList();
         try {
             readPlayerFromFile("players.txt");
         } catch (FileNotFoundException e) {
