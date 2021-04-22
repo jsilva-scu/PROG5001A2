@@ -4,12 +4,12 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Snake
+public class JMAS_Snake
 {
     /**
      * Constructor for objects of class Snake
      */
-    public Snake() {
+    public JMAS_Snake() {
         // initialise instance variables        
     }
 

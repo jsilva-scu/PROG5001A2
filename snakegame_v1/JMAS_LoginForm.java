@@ -19,7 +19,7 @@ import java.io.FileNotFoundException;
  * @author Vinh Bui
  */
 
-public class LoginForm extends JFrame implements ActionListener {
+public class JMAS_LoginForm extends JFrame implements ActionListener {
     private JLabel labelUsername;
     private JLabel labelPassword;   
     private JTextField textUsername;
@@ -27,7 +27,7 @@ public class LoginForm extends JFrame implements ActionListener {
     private JButton buttonLogin;
     private PlayerList playerList;
  
-    public LoginForm() {
+    public JMAS_LoginForm() {
         super("Login Form");
         labelUsername = new JLabel("Enter username: ");
         labelPassword = new JLabel("Enter password: ");   
@@ -116,7 +116,7 @@ public class LoginForm extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LoginForm().setVisible(true);
+                new JMAS_LoginForm().setVisible(true);
             }
         });
     }

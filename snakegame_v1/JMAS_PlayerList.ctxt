@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=PlayerList
+comment0.target=JMAS_PlayerList
 comment1.params=
-comment1.target=PlayerList()
+comment1.target=JMAS_PlayerList()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
 comment2.params=name\ password
 comment2.target=void\ add(java.lang.String,\ java.lang.String)
@@ -15,7 +15,4 @@ comment4.text=\r\n\ Method\ to\ match\ a\ player\ in\ the\ list\ with\ a\ given\
 comment5.params=
 comment5.target=java.lang.String\ toString()
 comment5.text=\r\n\ Method\ to\ convert\ the\ PlayerList\ to\ a\ string\r\n\ @params\ none\r\n\ @return\ a\ string\ that\ represents\ all\ players\ in\ the\ list\r\n
-comment6.params=args
-comment6.target=void\ main(java.lang.String[])
-comment6.text=\r\n
-numComments=7
+numComments=6

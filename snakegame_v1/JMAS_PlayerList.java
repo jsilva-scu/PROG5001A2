@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-public class PlayerList
+public class JMAS_PlayerList
 {
     // list of player objects
     private ArrayList<Player> playerList;
@@ -16,7 +16,7 @@ public class PlayerList
     /**
      * Constructor for objects of class Player
      */
-    public PlayerList() {
+    public JMAS_PlayerList() {
         // initialise the player list
         playerList = new ArrayList<>();
     }
