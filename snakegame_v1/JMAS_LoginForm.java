@@ -99,32 +99,6 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
 
     }
 
-    // private void readPlayerFromFile(String fileName) throws FileNotFoundException{
-        // try {
-            // File file = new File(fileName);
-            // file.createNewFile();
-
-            // //Creating Scanner instnace to read File in Java
-            // Scanner scnr = new Scanner(file);
-
-            // //Reading each line of file using Scanner class
-            // while(scnr.hasNextLine()){
-                // String line = scnr.nextLine();
-                // Scanner uscanner = new Scanner(line);
-                // String username = uscanner.next();
-                // String password = uscanner.next(); 
-                // playerList.add(username, password);
-                // //JOptionPane.showMessageDialog(this, username + ": " + password);
-            // }
-            
-            // //Closes the scanner instance to save resources
-            // scnr.close();
-        // } catch (java.io.IOException ioe) {
-            // ioe.printStackTrace();
-        // }
-
-    // }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
                 @Override

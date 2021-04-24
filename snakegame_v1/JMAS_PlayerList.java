@@ -107,11 +107,11 @@ public class JMAS_PlayerList
             } else {
                 //If file players.txt does not yet exists, creates a new one and adds the users credentials
                 FileWriter fw = new FileWriter(PLAYERS_FILE_NAME, true);
-                fw.write("atie 1234");
+                fw.write("atie Adm1n");
                 fw.write(System.lineSeparator());
-                fw.write("jhonny 4321");
+                fw.write("jhonny 1234");
                 fw.write(System.lineSeparator());
-                fw.write("vinh 1423");
+                fw.write("vinh Adm1n");
                 fw.close();
                 
                 //After creating the file call it self (readPlayersFile) and read the file
