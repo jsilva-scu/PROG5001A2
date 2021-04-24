@@ -77,10 +77,9 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
 
         //instantiate the playerList
         playerList = new JMAS_PlayerList();
-        try {
-            readPlayerFromFile("players.txt");
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "File Not Found");
+        
+        if(playerList == null || playerList.toString() == ""){
+            JOptionPane.showMessageDialog(this, "No players were found!");
         }
     }
 
@@ -88,39 +87,43 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
         String username = textUsername.getText();
         String password = fieldPassword.getText();
         if (playerList.matchPlayer(username, password)) {
-            JOptionPane.showMessageDialog(this, username + ": login successfully");
+            //create the game with a game title The Snake Game (C) Jhonathan Silva
+            JFrame sgame = new JMAS_SnakeGame("The Snake Game (C) Jhonathan Silva");
+            sgame.setVisible(true);
+            
+            //Destroys the login window
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "wrong username or password");
         }
 
     }
 
-    private void readPlayerFromFile(String fileName) throws FileNotFoundException{
-        try {
-            File file = new File(fileName);
-            file.createNewFile();
+    // private void readPlayerFromFile(String fileName) throws FileNotFoundException{
+        // try {
+            // File file = new File(fileName);
+            // file.createNewFile();
 
-            //Creating Scanner instnace to read File in Java
-            Scanner scnr = new Scanner(file);
+            // //Creating Scanner instnace to read File in Java
+            // Scanner scnr = new Scanner(file);
 
-            //Reading each line of file using Scanner class
-            while(scnr.hasNextLine()){
-                String line = scnr.nextLine();
-                Scanner uscanner = new Scanner(line);
-                String username = uscanner.next();
-                String password = uscanner.next(); 
-                playerList.add(username, password);
-                //JOptionPane.showMessageDialog(this, username + ": " + password);
-            }
+            // //Reading each line of file using Scanner class
+            // while(scnr.hasNextLine()){
+                // String line = scnr.nextLine();
+                // Scanner uscanner = new Scanner(line);
+                // String username = uscanner.next();
+                // String password = uscanner.next(); 
+                // playerList.add(username, password);
+                // //JOptionPane.showMessageDialog(this, username + ": " + password);
+            // }
             
-            //Closes the scanner instance to save resources
-            scnr.close();
-        }
-        catch (java.io.IOException ioe) {
-            ioe.printStackTrace();
-        }
+            // //Closes the scanner instance to save resources
+            // scnr.close();
+        // } catch (java.io.IOException ioe) {
+            // ioe.printStackTrace();
+        // }
 
-    }
+    // }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
