@@ -86,16 +86,16 @@ public class JMAS_LoginForm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String username = textUsername.getText();
         String password = fieldPassword.getText();
-        if (playerList.matchPlayer(username, password)) {
+        //if (playerList.matchPlayer(username, password)) {
             //create the game with a game title The Snake Game (C) Jhonathan Silva
             JFrame sgame = new JMAS_SnakeGame("The Snake Game (C) Jhonathan Silva");
             sgame.setVisible(true);
             
             //Destroys the login window
             this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "wrong username or password");
-        }
+        //} else {
+            //JOptionPane.showMessageDialog(this, "wrong username or password");
+        //}
 
     }
 
