@@ -64,11 +64,20 @@ public abstract class JMAS_GameObj {
     public void setYPos(int yPos) {
         this.yPos = yPos;
     }
-    // NEW
+    
+    /**
+     * Method to get the element's x and y position.
+     *
+     */
     public int[] getXAndYPos() {
         return new int[]{ xPos, yPos };
     }
     
+    /**
+     * Method to set the element's x and y position
+     *
+     * @param  x and y - the value for x and y position
+     */
     public void setXAndYPos(int x, int y) {
         this.xPos = x;
         this.yPos = y;

@@ -84,6 +84,10 @@ public class JMAS_Snake extends JMAS_GameObj {
         this.speed = amount;
     }
     
+    /**
+     * Method to return the array of JMAS_BodySegment
+     *
+     */
     public ArrayList<JMAS_BodySeguiment> getBody() {
         return snakeBody;
     }
@@ -93,7 +97,17 @@ public class JMAS_Snake extends JMAS_GameObj {
      *
      * @param  direction - the movement direction (left, right, up, down)
      */
-    public void move(int direction) {
+    public void move() {
+        for (int z = length; z > 0; z--) {
+            int index = (z - 1);
+            JMAS_BodySeguiment bSeg = snakeBody.get(index);
+            
+            bSeg.setXPos(bSeg.getXPos() + 10);
+            
+            //snakeBody.get(index).setXAndYPos(x++, y++);
+        }
+
+        // Continue here... Add direction change
     }
     
     /**
@@ -127,14 +141,8 @@ public class JMAS_Snake extends JMAS_GameObj {
      */
     @Override
     public void draw(Graphics g) {
-        int x, y;
-        if(snakeBody.size() > 0) {
-            for(int i = 0; i < snakeBody.size(); i++) {
-                x = 50 - i * 10;
-                y = 50;
-                snakeBody.get(i).setXAndYPos(x, y);
-                snakeBody.get(i).draw(g);
-            }
+        for(int i = 0; i < snakeBody.size(); i++) {
+            snakeBody.get(i).draw(g);
         }
     }
 }
