@@ -2,9 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
-import java.util.LinkedList;
 import javax.swing.ImageIcon;
-import java.util.ArrayList;
 
 /**
  * This class represents the game board or canvas. 
@@ -19,7 +17,6 @@ public class JMAS_GameBoard extends JPanel {
     private final int HEIGHT = 30;
     private final int CELLSZ = 10;
     private final int DELAY = 240;
-    // NEW STAFF....
     // Variable that indicates if the game is running or not.
     private boolean inGame = false;
     private JMAS_Snake snake = new JMAS_Snake();
@@ -53,11 +50,12 @@ public class JMAS_GameBoard extends JPanel {
     /**
      * Method to geberate a random location for the prey. 
      * 
-     * @param Graphic g - Used to render the prey image on the screen.
+     * @param Graphic g - Used to render the prey image on a random location on the screen.
      */
     public void spawnPrey(Graphics g) {
-        int x = (int)(Math.random() * ((WIDTH * CELLSZ) - WIDTH + 1) + WIDTH);
-        int y = (int)(Math.random() * ((HEIGHT * CELLSZ) - HEIGHT + 1)+ HEIGHT);
+        int x = (int)(Math.random() * ((WIDTH * CELLSZ) - WIDTH + CELLSZ) + 10);
+        int y = (int)(Math.random() * ((HEIGHT * CELLSZ) - HEIGHT + CELLSZ) + 10);
+        
         prey.setXAndYPos(x, y);
         prey.draw(g);
     }
