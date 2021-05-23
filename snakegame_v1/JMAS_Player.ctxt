@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=JMAS_Player
+comment1.params=name\ password\ bestScore
+comment1.target=JMAS_Player(java.lang.String,\ java.lang.String,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=java.lang.String\ getPassword()
+comment4.params=
+comment4.target=int\ getBestScore()
+comment5.params=score
+comment5.target=void\ setBestScore(int)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment7.params=p
+comment7.target=int\ compareTo(JMAS_Player)
+numComments=8

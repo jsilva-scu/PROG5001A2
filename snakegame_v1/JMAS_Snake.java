@@ -13,59 +13,49 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class JMAS_Snake extends JMAS_GameObj {
-        
-    private int length = 3;
+
+    private int initialLength = 3;
     private float speed = 10;
     private int cellSize = 50;
-    
+
     private JMAS_BodySeguiment bs;
     private ArrayList<JMAS_BodySeguiment> snakeBody = new ArrayList<JMAS_BodySeguiment>();
- 
-                
+
     /**
      * Constructor for objects of class Snake
      */
     public JMAS_Snake() {
         createSnake();
     }
-    
+
     /**
      * Constructor for objects of class Snake
      */
-    public JMAS_Snake(int length, float speed){
+    public JMAS_Snake(int initialLength, float speed){
         this();
-        this.length = length;
+        this.initialLength = initialLength;
         this.speed = speed;
     }
-    
+
     /**
-     * Returns the length of the snakeBody
+     * Returns the initialLength of the snakeBody
      * 
-     * @return property length
+     * @return property initialLength
      */
     public int getLength() {
-        return this.length; 
+        return this.snakeBody.size(); 
     }
-    
+
     /**
-     * Method to set the length of the snakeBody
+     * Increases the initialLength of the snakeBody
      *
-     * @param  length the length to be set
      */
-    public void setLength(int length) {
-        this.length = length;
+    public void increaseLength() {
+        int[] lastSeg = snakeBody.get(getLength() - 1).getXAndYPos();
+        bs = new JMAS_BodySeguiment(lastSeg[0], lastSeg[1], new ImageIcon("resources/body.png").getImage());
+        this.snakeBody.add(bs);
     }
-    
-    /**
-     * Increases the length of the snakeBody
-     *
-     * @param  amount the amount to which to increase the length
-     * @return length + amount
-     */
-    public void increaseLength(int amount) {
-        this.length += amount;
-    }
-    
+
     /**
      * Method to return the snake's movement speed.
      *
@@ -74,7 +64,7 @@ public class JMAS_Snake extends JMAS_GameObj {
     public float getSpeed() {
         return this.speed;
     }
-    
+
     /**
      * Method to set the speed of the snake
      *
@@ -83,7 +73,7 @@ public class JMAS_Snake extends JMAS_GameObj {
     public void setSpeed(float amount) {
         this.speed = amount;
     }
-    
+
     /**
      * Method to return the array of JMAS_BodySegment
      *
@@ -92,39 +82,61 @@ public class JMAS_Snake extends JMAS_GameObj {
         return snakeBody;
     }
     
+    public JMAS_BodySeguiment getHead() {
+        return snakeBody.get(0);
+    }
+
     /**
      * Method to change the x or y position of the snake
      *
      * @param  direction - the movement direction (left, right, up, down)
      */
-    public void move() {
-        for (int z = length; z > 0; z--) {
-            int index = (z - 1);
-            JMAS_BodySeguiment bSeg = snakeBody.get(index);
-            
-            bSeg.setXPos(bSeg.getXPos() + 10);
-            
-            //snakeBody.get(index).setXAndYPos(x++, y++);
+    public void move(String direction) {
+        JMAS_BodySeguiment bSeg, bSegTemp;
+        
+        // Gets the current position of the head.
+        int[] oldPos = getHead().getXAndYPos();
+        
+        if (direction == "LEFT") {
+            getHead().setXAndYPos(oldPos[0] - 10, oldPos[1]);
         }
 
-        // Continue here... Add direction change
+        if (direction == "RIGHT") {
+            getHead().setXAndYPos(oldPos[0] + 10, oldPos[1]);
+
+        }
+
+        if (direction == "UP") {
+            getHead().setXAndYPos(oldPos[0], oldPos[1] - 10);
+        }
+
+        if (direction == "DOWN") {
+            getHead().setXAndYPos(oldPos[0], oldPos[1] + 10);
+        }
+        
+        // Make body parts follow the head
+        for (int z = 1; z < snakeBody.size(); z++) {
+            bSeg = snakeBody.get(z); 
+             
+            int x = bSeg.getXPos();
+            int y = bSeg.getYPos();
+            
+            // Gets another copy and sets the position
+            bSeg.setXAndYPos(oldPos[0], oldPos[1]);
+            
+            // Update oldPos with position before the change
+            oldPos[0] = x;
+            oldPos[1] = y;
+        }
     }
     
-    /**
-     * Checks if snake collided on walls or its body.
-     * 
-     * @return True if collision adentified, False otherwise.
-     */
-    public boolean checkCollision() {
-        return false;
-    }
-    
+
     /**
      * Method to create a basic snakeBody.
      *
      */
     public void createSnake() {
-        for(int i = 0; i < length; i++) {            
+        for(int i = 0; i < initialLength; i++) {            
             if(i == 0) {
                 bs = new JMAS_BodySeguiment(i, i, new ImageIcon("resources/head.png").getImage());
                 snakeBody.add(bs);
@@ -134,7 +146,7 @@ public class JMAS_Snake extends JMAS_GameObj {
             }
         }
     }
-    
+
     /**
      * Method to draw the snake on the screen
      *

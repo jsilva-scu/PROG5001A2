@@ -8,20 +8,20 @@ import java.util.Random;
  * @date 04/03/2021
  * @version 1.0
  */
-public class JMAS_Apple extends JMAS_GameObj {
+public class JMAS_Prey extends JMAS_GameObj {
         
     /**
      * Constructor for objects of class Apple
      */
-    public JMAS_Apple() {
+    public JMAS_Prey() {
         super();
     }
     
-    public JMAS_Apple(int xPos, int yPos, Image img) {
+    public JMAS_Prey(int xPos, int yPos, Image img) {
         super(xPos, yPos, img);
     }
     
-    public JMAS_Apple(Image img) {
+    public JMAS_Prey(Image img) {
         super(img);
     }
 }
