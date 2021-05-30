@@ -14,6 +14,8 @@ import java.awt.Image;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -25,7 +27,7 @@ public class JMAS_SnakeGame extends JFrame {
     private int currentScore = 0;
     private JLabel lbCurrentPlayer, lbBestScore, lbProg, lbImage;
     private ImageIcon imageIcon;
-    JButton buttonLogin;
+    JButton buttonQuit;
     
 
     public JMAS_SnakeGame(String gameTille) {      
@@ -43,7 +45,7 @@ public class JMAS_SnakeGame extends JFrame {
         lbProg = new JLabel("PROG50001: 2021", SwingConstants.CENTER);
         imageIcon = new ImageIcon(new ImageIcon("resources/snake.png").getImage().getScaledInstance(80,80,Image.SCALE_DEFAULT));
         lbImage = new JLabel(imageIcon, SwingConstants.CENTER);
-        buttonLogin= new JButton("Login");
+        buttonQuit= new JButton("QUIT");
 
         //LAYOUT
         GridBagLayout gb = new GridBagLayout();
@@ -130,7 +132,14 @@ public class JMAS_SnakeGame extends JFrame {
         con.weightx = 1;
         con.weighty = 0;
         con.anchor = GridBagConstraints.NORTH;
-        rightMenu.add(buttonLogin, con);
+        rightMenu.add(buttonQuit, con);
+        buttonQuit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setPlayerBestScore();
+                dispose();
+            }
+        });
 
         return container;
     }
@@ -165,7 +174,6 @@ public class JMAS_SnakeGame extends JFrame {
     
     public void setPlayerBestScore() {
         if(this.currentScore > this.player.getBestScore()) {
-            System.out.println("SET SCORE");
             playerList.setPlayerBestScore(this.player, this.currentScore);
         }
     }

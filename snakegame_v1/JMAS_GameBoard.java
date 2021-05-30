@@ -103,18 +103,14 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
      * 
      */
     public void spawnPrey() {
-        // Generates a random number between 1 and 30.
         Random rnd = new Random();
-        int x = (rnd.nextInt(WIDTH) * CELLSZ) - CELLSZ;
-        int y = (rnd.nextInt(WIDTH) * CELLSZ) - CELLSZ;
+        int x = (rnd.nextInt(WIDTH) * CELLSZ) - WIDTH;
+        int y = (rnd.nextInt(HEIGHT) * CELLSZ) - HEIGHT;
         if(x < 0) {
             x = (x * -1);
         } else if (y < 0) {
-            x = (x * -1);
+            y = (y * -1);
         }
-        
-        System.out.println("X: " + x + ", Y: " + y);
-        
         prey.setXAndYPos(x, y);
     }
 
