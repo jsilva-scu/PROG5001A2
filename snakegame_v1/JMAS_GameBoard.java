@@ -31,14 +31,14 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
     private final int DIMENTION_W = WIDTH * CELLSZ;
     private final int DIMENTION_H = HEIGHT * CELLSZ;
     private final int DELAY = 240;
-    
+
     // List to store preys and snakes
     private ArrayList<JMAS_Prey> preys = new ArrayList<JMAS_Prey>();
     private ArrayList<JMAS_Snake> snakes = new ArrayList<JMAS_Snake>();
 
     private Timer timer = new Timer(DELAY, this);
     private boolean isPaused = false;
-    
+
     // Variable that indicates if the game is running or not.
     private boolean inGame = false;
     private boolean leftDirection = false;
@@ -61,7 +61,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
 
         initGame();
     }
-    
+
     public JMAS_GameBoard(JMAS_SnakeGame parent) {
         this();
         this.parent = parent;
@@ -69,10 +69,10 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
 
     public void initGame() {
         inGame = true;
-       
+
         // Sets the initial X and Y positions for the Prey
         spawnPrey();
-        
+
         // Sets the initial X and Y positions for the Snake
         spawnSnake();
 
@@ -91,7 +91,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             for(int i = 0; i < preys.size(); i++) {
                 preys.get(i).draw(g);
             }
-            
+
             //DRAW SNAKES 
             for(int i = 0; i < snakes.size(); i++) {
                 snakes.get(i).draw(g);
@@ -100,7 +100,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             gameOver(g);
         }
     }
-    
+
     /**
      * Returns the Panels parent component.
      * 
@@ -109,7 +109,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
     public JMAS_SnakeGame getParent() {
         return this.parent;
     }
-    
+
     /**
      * Method to generate a random X and Y location for the prey.
      * 
@@ -123,7 +123,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
         } else if(preys.size() == 1) {
             preys.add(new JMAS_Prey(new ImageIcon("resources/prey.png").getImage()));
         }
-        
+
         for(int i = (preys.size() - 1); i > 0; i--) {
             rnd = new Random();
             x = (rnd.nextInt(WIDTH) * CELLSZ) - WIDTH;
@@ -144,12 +144,12 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
     public void spawnSnake() {
         ArrayList<JMAS_BodySeguiment> snakeBody;
         int x, y;
-        
+
         if(snakes.size() < 1) {
-           snakes.add(new JMAS_Snake());
-           snakes.add(new JMAS_Snake()); 
+            snakes.add(new JMAS_Snake());
+            snakes.add(new JMAS_Snake()); 
         }
-        
+
         for(int i = 0; i < snakes.size(); i++) {
             snakeBody = snakes.get(i).getBody();
             System.out.println(snakes.get(i).getBody());
@@ -167,9 +167,9 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {  
         if (inGame) {        
             if (leftDirection) {
-               snakes.get(0).move("LEFT");
+                snakes.get(0).move("LEFT");
             }
-            
+
             if(aDirection) {
                 snakes.get(1).move("LEFT");
             }
@@ -177,7 +177,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             if (rightDirection) {
                 snakes.get(0).move("RIGHT");
             } 
-            
+
             if(dDirection) {
                 snakes.get(1).move("RIGHT");
             }
@@ -185,7 +185,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             if (upDirection) {
                 snakes.get(0).move("UP");
             }
-            
+
             if(wDirection) {
                 snakes.get(1).move("UP");
             }
@@ -193,11 +193,11 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             if (downDirection) {
                 snakes.get(0).move("DOWN");
             }
-            
+
             if(sDirection) {
                 snakes.get(1).move("DOWN");
             }
-            
+
             for(int i = 0; i < snakes.size(); i++) {
                 checkPreyEaten(snakes.get(i));
                 checkCollision(snakes.get(i));
@@ -206,7 +206,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
 
         repaint();
     }
-    
+
     /**
      * Checks if the snake's head is at the same X and Y position as the prey.
      * 
@@ -216,7 +216,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
         int[] snakeHeadPos = snake.getHead().getXAndYPos();
         JMAS_Prey prey1 = preys.get(0);
         JMAS_Prey prey2 = preys.get(1);   
-        
+
         if ((snakeHeadPos[0] == prey1.getXPos()) && (snakeHeadPos[1] == prey1.getYPos())) {
             preys.remove(0);
             snake.increaseLength();
@@ -231,7 +231,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             spawnPrey();
         }
     }
-    
+
     /**
      * Checks if snake collided on walls or its body.
      * 
@@ -241,15 +241,14 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
         int[] headPos = snake.getHead().getXAndYPos();
         JMAS_BodySeguiment bSeg;
         ArrayList<JMAS_BodySeguiment> snakeBody = snake.getBody();
-        
-        
+
         for (int z = 1; z < snakeBody.size(); z++) {
             bSeg = snakeBody.get(z);
             if(snakeBody.size() > 4 && (headPos[0] == bSeg.getXPos()) && headPos[1] == bSeg.getYPos()) {
                 inGame = false;
             }
         }
-       
+
         // Check collision with board.
         if (headPos[1] >= DIMENTION_H) {
             inGame = false;
@@ -266,13 +265,13 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
         if (headPos[0] < 0) {
             inGame = false;
         }
-        
+
         if (!inGame) {
             timer.stop();
             parent.setPlayerBestScore();
         }
     }
-    
+
     public void gameOver(Graphics g) {
         String msg = "Game Over";
         Font small = new Font("Helvetica", Font.BOLD, 14);
@@ -284,9 +283,9 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
     }
 
     private class TAdapter extends KeyAdapter {
-        
+
         //##### NEW CODE #####//
-        
+
         private boolean checkKeyPressedSnake1(int key) {
             if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
                 leftDirection = true;
@@ -317,20 +316,20 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             }
             return false;
         }
-        
+
         private void checkKeySnake2(int key) {
             if ((key == KeyEvent.VK_A) && (!dDirection)) {
                 aDirection = true;
                 wDirection = false;
                 sDirection = false;
             }
-            
+
             if ((key == KeyEvent.VK_D) && (!aDirection)) {
                 dDirection = true;
                 wDirection = false;
                 sDirection = false;
             }
-            
+
             if ((key == KeyEvent.VK_W) && (!sDirection)) {
                 wDirection = true;
                 dDirection = false;
@@ -351,7 +350,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
             if(!checkKeyPressedSnake1(key)) {
                 checkKeySnake2(key);
             }
-            
+
             if ((key == KeyEvent.VK_BACK_SPACE || key == 32)) {
                 if(isPaused) {
                     timer.start();
@@ -360,7 +359,7 @@ public class JMAS_GameBoard extends JPanel implements ActionListener {
                     timer.stop();
                     isPaused = true;
                 }
-                
+
             }
         }
     }
